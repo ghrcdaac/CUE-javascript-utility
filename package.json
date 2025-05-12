@@ -1,0 +1,22 @@
+
+{
+    "name": "js-cue-upload-utility",
+    "version": "0.1.0",
+    "description": "JavaScript library for uploading files to CUE backend",
+    "main": "index.js",
+    "type": "module", 
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+      "mime-types": "^2.1.35", 
+      "axios": "^1.6.0"
+
+    },
+    "devDependencies": {
+
+    },
+    "engines": {
+      "node": ">=18.0.0"
+    }
+  }
