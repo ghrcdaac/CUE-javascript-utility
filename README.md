@@ -27,13 +27,7 @@ This library is intended for developers who need to integrate CUE upload capabil
 
 ## Installation
 
-```bash
-npm install js-cue-upload-utility # Or your published package name
-# or
-yarn add js-cue-upload-utility
-```
-
-If you are using it directly from this source:
+Clone the repository to your local machine and perform
 
 ```bash
 npm install # To install dependencies like mime-types and axios
@@ -171,38 +165,40 @@ runUpload(); // Make sure to replace paths in runUpload before running
 
 new CUEUploader(options = {})
 
-options (Object): Optional configuration overrides and callbacks.
-token (String): API JWT token.
-env (String): Target environment (prod, uat, sit, local). Overrides default_env in config.json.
-configPath (String): Absolute path to a custom config.json file.
-verboseLevel (Number): 0 for standard info, 1 or more for debug console logs from the library.
-quietMode (Boolean): Suppress most console output from the library.
-fileConcurrency (Number): Overrides file_concurrency from config.json.
-partConcurrency (Number): Overrides part_concurrency from config.json.
-multipartThresholdGb (Number): Overrides multipart_threshold_gb from config.json.
-multipartChunkSizeMb (Number): Overrides multipart_chunk_size_mb from config.json.
-onFolderProgress (Function): Callback for folder upload progress. Receives an object like { folder, message, type, filesProcessed, totalFiles, loaded, total, phase }.
-onFileProgress (Function): Callback for individual file (single or multipart overall) progress. Receives an object like { file, message, type, loaded, total, phase }.
-onPartProgress (Function): Callback for multipart part progress. Receives (partNum, loadedBytes, totalPartBytes, statusMessage).
+* options (Object): Optional configuration overrides and callbacks.
+* token (String): API JWT token.
+* env (String): Target environment (prod, uat, sit, local). Overrides default_env in config.json.
+* configPath (String): Absolute path to a custom config.json file.
+* verboseLevel (Number): 0 for standard info, 1 or more for debug console logs from the library.
+* quietMode (Boolean): Suppress most console output from the library.
+* fileConcurrency (Number): Overrides file_concurrency from config.json.
+* partConcurrency (Number): Overrides part_concurrency from config.json.
+* multipartThresholdGb (Number): Overrides multipart_threshold_gb from config.json.
+* multipartChunkSizeMb (Number): Overrides multipart_chunk_size_mb from config.json.
+* onFolderProgress (Function): Callback for folder upload progress. Receives an object like { folder, message, type, filesProcessed, totalFiles, loaded, total, phase }.
+* onFileProgress (Function): Callback for individual file (single or multipart overall) progress. Receives an object like { file, message, type, loaded, total, phase }.
+* onPartProgress (Function): Callback for multipart part progress. Receives (partNum, loadedBytes, totalPartBytes, statusMessage).
 
 ## Methods
 
 async upload(sourcePath, collection, uploadOptions = {})
 Uploads a single file or an entire folder.
 
-sourcePath (String): Absolute or relative path to the file or folder.
-collection (String): The target CUE collection short_name.
-uploadOptions (Object):
-targetPath (String, Optional): Remote sub-path within the collection where files will be placed.
-autoApprove (Boolean, Optional, Default: true for library): If uploading a folder, skips any confirmation. The calling application should handle confirmation logic if needed.
-Returns: A Promise that resolves with an object containing upload results.
-For single file: { file, status, s3_key, location? }
-For folder: { totalFiles, successfulUploads, failedUploads, results: Array<fileTaskResult> }
+* sourcePath (String): Absolute or relative path to the file or folder.
+* collection (String): The target CUE collection short_name.
+* uploadOptions (Object):
+    * targetPath (String, Optional): Remote sub-path within the collection where files will be placed.
+    * autoApprove (Boolean, Optional, Default: true for library): If uploading a folder, skips any confirmation. The calling application should handle confirmation logic if needed.
+
+* Returns: A Promise that resolves with an object containing upload results.
+    * For single file: { file, status, s3_key, location? }
+    * For folder: { totalFiles, successfulUploads, failedUploads, results: Array<fileTaskResult> }
+
 async setConfigValue(key, value)
 Programmatically saves a value to the configuration file.
 
-key (String): The configuration key (e.g., "api_token", "default_env").
-value (Any): The value to save.
+* key (String): The configuration key (e.g., "api_token", "default_env").
+* value (Any): The value to save.
 
 ## Development
 (Clone the repository, run npm install to get dependencies like axios and mime-types. Use linters/formatters as desired.)
